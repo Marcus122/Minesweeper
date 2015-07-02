@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Minesweeper</title>
+    
+    <style type="text/css">
+       * { margin:0px; padding:0px; }
+       body { margin:0px auto; }
+       #minesweeper { margin: 10px 0px; width: 100%; }
+       a { color:white; text-decoration:none; }
+       a:hover { text-decoration:underline; }
+	   input[type="submit"]{ padding:5px; }
+	   input.number{ width: 30px; }
+    </style>
+  </head>
+  <body>
+    <div id="minesweeper">
+	  <canvas id="canvas" width="1000px" height="450px" />
+	</div>
+	<form method="post" id="newGame">
+		<table>
+		  <tr>
+		    <th><label for="width">Width</label></th>
+			<td><input class="number" name="width" id="width" value="10"/></td>
+		  </tr>
+		  <tr>
+		    <th><label for="height">Height</label></th>
+			<td><input class="number" name="height" id="height" value="10"/></td>
+		  </tr>
+		  <tr>
+		    <th><label for="mines">Mines</label></th>
+			<td><input class="number" name="mines" id="mines" value="10"/></td>
+		  </tr>
+		  <tr>
+			<td colspan="2"><input type="submit" value="New Game"/></td>
+		  </tr>
+		</table>
+	</form>
+	<script src="minesweeper.js"></script>
+	<script>
+		var wrapper = document.getElementById('minesweeper');
+		MINESWEEPER.init();
+	</script>
+	<script>
+	  var form = document.getElementById('newGame');
+	  form.addEventListener("submit", submit, true);
+	  function submit(ev){
+		ev.preventDefault();
+		var width = document.getElementById('width');
+		var height = document.getElementById('height');
+		var mines = document.getElementById('mines');
+		MINESWEEPER.newGame(width.value,height.value,mines.value);
+	  }
+	</script>
+  </body>
+</html>
